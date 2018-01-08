@@ -1,4 +1,7 @@
 class Country < ActiveRecord::Base
-  has_many :visitors
+  has_many :visitor_countrys
+  has_many :visitors, through: :visitor_countrys
   has_many :beverages
+
+
 end
