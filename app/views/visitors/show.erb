@@ -1,1 +1,8 @@
-
+<h2>Hi <%= @visitor.username %>, welcome to your profile page.</h2>
+<p>You've been to the <%= @visitor.countrys.all.size %> country(s) listed below. We've also displayed your favorite drink from each country. If blank, <a href="/visitor/<%=@visitor.id%>/edit">update</a> them with your favorite drink from each country.</p>
+<ul>
+  <% @visitor.countrys.all.each do |country| %>
+  <li><%= country.name %> - Favorite Drink: </li>
+  <% end %>
+</ul>
+<!-- add buttons to edit their countries or add favorite drinks to the countries they've visited -->

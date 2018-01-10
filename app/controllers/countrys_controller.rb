@@ -1,4 +1,4 @@
-class CountryController < ApplicationController
+class CountrysController < ApplicationController
 
 get '/countries/' do
   @visitor = Visitor.find_by_id(session[:visitor_id])

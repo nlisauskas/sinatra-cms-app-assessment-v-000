@@ -1,1 +1,2 @@
-##
+class BeveragesController < ApplicationController
+end

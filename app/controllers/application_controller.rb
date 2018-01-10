@@ -1,4 +1,3 @@
-##
 require_relative '../../config/environment'
 
 class ApplicationController < Sinatra::Base
@@ -34,14 +33,28 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/countries/' do
-    @visitor = Visitor.find_by_id(session[:visitor_id])
-    erb :'/countries/countries'
+  get '/login' do
+    if logged_in?
+      redirect to "/visitor/#{session[:visitor_id]}"
+    else
+      erb :'/visitors/login'
+    end
+  end
+
+  post '/login' do
+    visitor = Visitor.find_by(:username => params[:username])
+    if visitor && visitor.authenticate(params[:password])
+    session[:visitor_id] = visitor.id
+    redirect to "/visitor/#{visitor.id}"
+    else
+      redirect to "/login"
+    end
   end
 
   get '/logout' do
     if logged_in?
     session.clear
+    redirect to '/login'
     else
     redirect to '/login'
     end

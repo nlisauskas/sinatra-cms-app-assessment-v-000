@@ -1,0 +1,20 @@
+<h2>Hi <%= @visitor.username %>, welcome to your profile page.</h2>
+<p>You've been to the <%= @visitor.countrys.all.size %> country(s) listed below. Update them with your favorite drink from each country:</p>
+<form class="" action="/visitor/<%=@visitor.id%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+<ul>
+  <% @visitor.countrys.all.each do |country| %>
+  <li><%= country.name %> - <label for="">Favorite Drink: </label><input type="text" name="" value=""></li>
+  <% end %>
+</ul>
+<br></br>
+
+<!-- Needs to be checked if the user has been there -->
+
+<label for="countries">Feel free to edit the countries you've been to:</label>
+<br></br>
+<% Country.all.each do |country| %>
+  <input type="checkbox" name="countrys[]" value="<%=country.id%>" id="<%=country.name%>" <%='checked' if @visitor.countrys.include?(country) %>><%=country.name.capitalize%><br></br></input>
+  <% end %>
+<input type="submit" name="submit" value="Update your countries with your favorite drinks!"></br>
+</form>
