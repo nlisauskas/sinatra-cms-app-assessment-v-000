@@ -1,0 +1,7 @@
+<h2>All countries in the world are listed below:</h2>
+<p>Click a country to learn more about the Traveling Drinkers that have been there and their favorite drinks.</p>
+<ul>
+  <% Country.all.each do |country| %>
+  <li><a href="/country/<%=country.id%>"><%= country.name %></a></li>
+  <% end %>
+</ul>

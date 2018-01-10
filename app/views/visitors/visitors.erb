@@ -1,1 +1,7 @@
-<!-- -->
+<h2>All visitors on the site are listed below:</h2>
+<p>Click on their link below to visit their profile page.</p>
+<ul>
+  <% Visitor.all.each do |visitor| %>
+  <li><a href="/visitor/<%=visitor.id%>"><%= visitor.username%></a></li>
+  <% end %>
+</ul>
