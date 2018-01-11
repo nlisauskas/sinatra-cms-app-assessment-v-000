@@ -3,10 +3,10 @@ require_relative '../../config/environment'
 class ApplicationController < Sinatra::Base
 
   configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
     enable :sessions
     set :session_secret, "secret"
+    set :public_folder, 'public'
+    set :views, 'app/views'
   end
 
   get '/' do
@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    if session[:visitor_id]
+    if session[:id]
       redirect to '/countries'
     else
       erb :'/visitors/create_visitor'
@@ -28,14 +28,14 @@ class ApplicationController < Sinatra::Base
       @visitor = Visitor.create(:username => params[:username], :password => params[:password])
       @visitor.country_ids = params[:countrys]
       @visitor.save
-      session[:visitor_id] = @visitor.id
+      session[:id] = @visitor.id
       redirect to "/visitor/#{@visitor.id}"
     end
   end
 
   get '/login' do
     if logged_in?
-      redirect to "/visitor/#{session[:visitor_id]}"
+      redirect to "/visitor/#{session[:id]}"
     else
       erb :'/visitors/login'
     end
@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     visitor = Visitor.find_by(:username => params[:username])
     if visitor && visitor.authenticate(params[:password])
-    session[:visitor_id] = visitor.id
+    session[:id] = visitor.id
     redirect to "/visitor/#{visitor.id}"
     else
       redirect to "/login"
@@ -67,7 +67,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_visitor
-      @current_visitor ||= Visitor.find_by(id: session[:visitor_id]) if session[:visitor_id]
+      @current_visitor ||= Visitor.find_by(id: session[:id]) if session[:id]
     end
   end
 

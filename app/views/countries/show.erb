@@ -1,2 +1,7 @@
 <h2>Welcome to <%= @country.name %>!</h2>
 <p>Check out our visitors and their favorite drinks below:</p>
+<ul>
+  <% @country.visitors.each do |visitor| %>
+  <li><a href="/visitor/<%=visitor.id%>"><%= visitor.username.capitalize %></a></li>
+  <% end %>
+</ul>
