@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride
 use CountrysController
 use VisitorsController
-use BeveragesController
+use CitiesController
 run ApplicationController

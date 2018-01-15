@@ -16,7 +16,7 @@
 <% Country.all.each do |country| %>
   <input type="checkbox" name="countrys[]" value="<%=country.id%>" id="<%=country.name%>" <%='checked' if @visitor.countrys.include?(country) %>><%=country.name.capitalize%><br></br></input>
   <% end %>
-<input type="submit" name="submit" value="Update your countries with your favorite drinks!"></br>
+<input type="submit" name="submit" value="Update your countries!"></br>
 </form>
 <br></br>
 <label>Or, delete your account:</label>

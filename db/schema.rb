@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107164542) do
+ActiveRecord::Schema.define(version: 20180115142927) do
 
-  create_table "beverages", force: :cascade do |t|
+  create_table "cities", force: :cascade do |t|
     t.string  "name"
     t.integer "country_id"
   end
