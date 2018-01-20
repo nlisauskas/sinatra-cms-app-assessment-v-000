@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
-  has_many :visitors
   belongs_to :country
+  has_many :visitor_cities
+  has_many :visitors, through: :visitor_cities
 end

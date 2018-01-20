@@ -1,0 +1,31 @@
+<h2>Hi <%= @visitor.username %>, welcome to your profile page.</h2>
+<p>You've been to the <%= @visitor.countrys.all.size %> country(s) listed below.</p>
+<form class="" action="/visitor/<%=@visitor.id%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+<ul>
+  <% @visitor.countrys.all.each do |country| %>
+  <li><%= country.name %></li>
+  <% end %>
+</ul>
+<br></br>
+
+<!-- Needs to be checked if the user has been there -->
+
+<label for="countries">Below you can add/edit the cities you've been to:</label>
+<br></br>
+<% City.all.each do |city| %>
+<!-- turn this into a dropdown where you can select one city at a time -->
+  <input type="checkbox" name="cities[]" value="<%=city.id%>" id="<%=city.name%>" <%='checked' if @visitor.cities.include?(city) %>><%=city.name.capitalize%><br></br></input>
+  <% end %>
+  <label for="city_name">Or add a new city:</label>
+<input type="text" name="city_name" id="city_name"><br></br>
+<label for="city_country">And its country:</label>
+<input type="text" name="country_name" id="city_name"><br></br>
+<input type="submit" name="submit" value="Update your cities!"></br>
+</form>
+<br></br>
+<label>Or, delete your account:</label>
+<form class="" action="/visitor/<%=@visitor.id%>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" name="submit" value="Delete Account">
+</form>

@@ -7,12 +7,12 @@
   <label for="password">Password:</label>
   <input type="text" name="password" id="password" value="">
   <br></br>
-  <label for="countries">Select all of the countries you've been to:</label>
+<!--  <label for="countries">Select all of the countries you've been to:</label>
   <br></br>
   <% Country.all.each do |country| %>
     <input type="checkbox" name="countrys[]" value="<%=country.id%>" id="<%=country.name%>"><%=country.name.capitalize%><br></br></input>
     <% end %>
-  <!-- Come back to this to make it a dropdown
+  Come back to this to make it a dropdown
   <select class="" size ="245" multiple="">
     <% Country.all.each do |country| %>
     <option name="countries" value="<%=country.id%>"><%= country.name %></option>

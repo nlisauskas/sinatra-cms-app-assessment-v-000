@@ -21,24 +21,13 @@ class VisitorsController < ApplicationController
      redirect to "/visitor/#{@visitor.id}"
    end
 
-   get '/visitor/:id/edit_drinks' do
+   get '/visitor/:id/edit_cities' do
      @visitor = Visitor.find_by(:id => params[:id])
      if logged_in? && @visitor.id == session[:id]
-     erb :'/visitors/edit_drinks'
+     erb :'/visitors/edit_cities'
     else
       redirect to "/visitor/#{session[:id]}"
     end
-   end
-
-   patch '/visitor/:id/drinks' do
-     @visitor = Visitor.find_by_id(params[:id])
-     countrys = @visitor.country_ids
-
-     #iterate over countries, find or create a drink, assign drink to that country and user
-
-     drinks = Beverage.find_or_create_by(:name => params[:drink_name])
-     @visitor.save
-     redirect to "/visitor/#{@visitor.id}"
    end
 
    get '/visitors' do
