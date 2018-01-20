@@ -30,6 +30,18 @@ class VisitorsController < ApplicationController
     end
    end
 
+   patch '/visitor/:id/cities' do
+     ## need to have one option for if they select an existing city and if they create a new city
+     @visitor = Visitor.find_by_id(params[:id])
+     @city = City.create(:name => params[:city_name])
+     @city.country_id = params[:countries]
+     @city.save
+     @visitor.cities << @city
+     @visitor.countrys << Country.find_by(:id => params[:countries])
+     @visitor.save
+     redirect to "/visitor/#{@visitor.id}"
+   end
+
    get '/visitors' do
      erb :'/visitors/visitors'
    end

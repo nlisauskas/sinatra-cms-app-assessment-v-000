@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
       redirect to '/signup'
     else
       @visitor = Visitor.create(:username => params[:username], :password => params[:password])
-  #    @visitor.country_ids = params[:countrys]
+      #@visitor.country_ids = params[:countrys]
       @visitor.save
       session[:id] = @visitor.id
       redirect to "/visitor/#{@visitor.id}"

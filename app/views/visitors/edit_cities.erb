@@ -1,6 +1,6 @@
 <h2>Hi <%= @visitor.username %>, welcome to your profile page.</h2>
 <p>You've been to the <%= @visitor.countrys.all.size %> country(s) listed below.</p>
-<form class="" action="/visitor/<%=@visitor.id%>" method="post">
+<form class="" action="/visitor/<%=@visitor.id%>/cities" method="post">
   <input type="hidden" name="_method" value="PATCH">
 <ul>
   <% @visitor.countrys.all.each do |country| %>
@@ -20,7 +20,11 @@
   <label for="city_name">Or add a new city:</label>
 <input type="text" name="city_name" id="city_name"><br></br>
 <label for="city_country">And its country:</label>
-<input type="text" name="country_name" id="city_name"><br></br>
+  <select name="countries">
+    <% Country.all.each do |country| %>
+    <option name="country_id" value="<%=country.id%>"><%= country.name%></option>
+    <% end %>
+  </select><br></br>
 <input type="submit" name="submit" value="Update your cities!"></br>
 </form>
 <br></br>

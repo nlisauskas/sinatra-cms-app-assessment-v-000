@@ -1,3 +1,4 @@
+
 class CitiesController < ApplicationController
 
   get '/cities/new' do
