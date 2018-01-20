@@ -31,13 +31,15 @@ class VisitorsController < ApplicationController
    end
 
    patch '/visitor/:id/cities' do
-     ## need to have one option for if they select an existing city and if they create a new city
      @visitor = Visitor.find_by_id(params[:id])
-     @city = City.create(:name => params[:city_name])
-     @city.country_id = params[:countries]
+     @city = City.find_or_create_by(:name => params[:city_name], :country_id => params[:countries])
      @city.save
-     @visitor.cities << @city
-     @visitor.countrys << Country.find_by(:id => params[:countries])
+      if !@visitor.cities.include?(@city)
+       @visitor.cities << @city
+      end
+      if !@visitor.countrys.include?(Country.find_by(:id => params[:countries]))
+        @visitor.countrys << Country.find_by(:id => params[:countries])
+      end
      @visitor.save
      redirect to "/visitor/#{@visitor.id}"
    end
