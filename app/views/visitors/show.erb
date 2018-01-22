@@ -1,9 +1,18 @@
-<h2>Hi <%= @visitor.username %>, welcome to your profile page.</h2>
-<p>You've been to the <%= @visitor.countrys.all.size %> country(s) listed below. We've also displayed the cities you've been to in each country.</p>
+<h2>Welcome to  <%= @visitor.username %>'s profile page.</h2>
+<p><%= @visitor.username %> has been to the <%= @visitor.countrys.all.size %> country(s) listed below. We've also displayed the cities <%= @visitor.username %> has been to in each country.</p>
 <ul>
   <% @visitor.countrys.all.each do |country| %>
   <li><%= country.name %></li>
+  <% country.cities.all.each do |city| %>
+  <ul>
+    <% if @visitor.city_ids.include?(city.id) %>
+    <li><%= city.name%></li>
+    <% end %>
+  </ul>
+  <% end %>
   <% end %>
 </ul>
+<% if @visitor.id == session[:id] %>
 <a href="/visitor/<%=@visitor.id%>/edit_countries">Add/Edit Countries</a><br></br>
 <a href="/visitor/<%=@visitor.id%>/edit_cities">Add/Edit Cities</a>
+<% end %>

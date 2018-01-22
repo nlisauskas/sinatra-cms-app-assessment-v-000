@@ -1,7 +1,13 @@
 <h2>Welcome to <%= @country.name %>!</h2>
-<p>Check out our visitors and their favorite drinks below:</p>
+<p>Check out <%= @country.name %>'s visitors. You can see the cities they've been to by clicking on the links below:</p>
 <ul>
   <% @country.visitors.each do |visitor| %>
   <li><a href="/visitor/<%=visitor.id%>"><%= visitor.username.capitalize %></a></li>
   <% end %>
+</ul>
+  <p>Below are some of the most popular cities in <%= @country.name %>.</p>
+  <ul>
+    <% @country.cities.each do |city| %>
+    <li><a href="/cities/<%=city.id%>"><%= city.name %></a></li>
+    <% end %>
 </ul>

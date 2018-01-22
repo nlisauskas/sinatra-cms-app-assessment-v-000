@@ -1,3 +1,11 @@
 
 <h2><%= @city.name %></h2>
-<p>This city can be found in <%= @country.name %>.</p>
+<p>This city can be found in <a href="/countries/<%=@country.id%>"><%= @country.name %></a>.</p>
+<br></br>
+<p>The following visitors have been to Bogota:</p>
+<% @city.visitor_ids.each do |visitor_id| %>
+<ul>
+  <% visitor = Visitor.find_by(:id => visitor_id) %>
+  <li><a href="/visitors/<%=visitor.id%>"><%= visitor.username.capitalize %></a></li>
+</ul>
+<% end %>
