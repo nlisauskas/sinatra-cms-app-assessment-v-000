@@ -1,6 +1,10 @@
 
 class CitiesController < ApplicationController
 
+  get '/cities' do
+    erb :'/cities/cities'
+  end
+
   get '/cities/new' do
     erb :'/cities/new'
   end

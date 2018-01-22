@@ -2,11 +2,11 @@
 <p><%= @visitor.username %> has been to the <%= @visitor.countrys.all.size %> country(s) listed below. We've also displayed the cities <%= @visitor.username %> has been to in each country.</p>
 <ul>
   <% @visitor.countrys.all.each do |country| %>
-  <li><%= country.name %></li>
+  <li><a href="/country/<%=country.id%>"><%= country.name %></a></li>
   <% country.cities.all.each do |city| %>
   <ul>
     <% if @visitor.city_ids.include?(city.id) %>
-    <li><%= city.name%></li>
+    <li><a href="/cities/<%=city.id%>"><%= city.name%></a></li>
     <% end %>
   </ul>
   <% end %>

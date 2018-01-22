@@ -1,8 +1,8 @@
 
 <h2><%= @city.name %></h2>
-<p>This city can be found in <a href="/countries/<%=@country.id%>"><%= @country.name %></a>.</p>
+<p>This city can be found in <a href="/country/<%=@country.id%>"><%= @country.name %></a>.</p>
 <br></br>
-<p>The following visitors have been to Bogota:</p>
+<p>The following visitors have been to <%=@city.name%>:</p>
 <% @city.visitor_ids.each do |visitor_id| %>
 <ul>
   <% visitor = Visitor.find_by(:id => visitor_id) %>

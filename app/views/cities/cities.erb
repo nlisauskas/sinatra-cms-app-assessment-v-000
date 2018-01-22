@@ -1,1 +1,7 @@
-
+<h2>Below are the cities our users have been to.</h2>
+<% City.all.each do |city| %>
+  <ul>
+    <% country = Country.find_by(:id => city.country_id)%>
+    <li><a href="/cities/<%=city.id%>"><%= city.name%></a>, <a href="countries/<%=country.id%>"><%= country.name%></a></li>
+  </ul>
+<% end %>
