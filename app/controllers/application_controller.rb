@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    if session[:id]
+    if logged_in?
       redirect to "/visitor/#{session[:id]}"
     else
       erb :'/visitors/create_visitor'
