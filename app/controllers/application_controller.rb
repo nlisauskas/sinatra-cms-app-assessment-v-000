@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if params[:username].empty? || params[:password].empty?
+    if params[:visitor].empty?
       redirect to '/signup'
     else
       @visitor = Visitor.create(params[:visitor])
