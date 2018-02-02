@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
     if params[:username].empty? || params[:password].empty?
       redirect to '/signup'
     else
-      @visitor = Visitor.create(:username => params[:username], :password => params[:password])
+      @visitor = Visitor.create(params[:visitor])
       session[:id] = @visitor.id
       redirect to "/visitor/#{@visitor.id}"
     end
