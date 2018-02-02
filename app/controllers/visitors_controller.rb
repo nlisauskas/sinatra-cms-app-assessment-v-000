@@ -32,6 +32,7 @@ class VisitorsController < ApplicationController
 
    patch '/visitor/:id/cities' do
      @visitor = Visitor.find_by_id(params[:id])
+     if logged_in? && @visitor.id == session[:id]
      @visitor.city_ids = params[:cities]
      #### making it so a country is added to a profile if a pre-existing city is selected.
      @visitor.city_ids.each do |city|
@@ -53,6 +54,7 @@ class VisitorsController < ApplicationController
       end
      @visitor.save
      redirect to "/visitor/#{@visitor.id}"
+    end
    end
 
    get '/visitors' do
